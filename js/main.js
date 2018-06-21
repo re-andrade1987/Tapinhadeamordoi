@@ -95,8 +95,8 @@ let quiz = [
 let respostaSim = []
 let respostaNão = []
 let i = 0
-let acertos = 0
-let erros = 0
+let respostaBoa = 0
+let respostaRuim = 0
 
 document.querySelector('.quiz').innerHTML = `
     <img src=${quiz[i].imagem} alt=${quiz[i].alt} />
@@ -108,18 +108,17 @@ document.querySelector('.quiz').innerHTML = `
 `
 
 function onClick(valor){
-    respostaSim[i] = valor
-    respostaNão[i] = valor
-   
-    if(respostaSim[i] === quiz[i].respostaNão) {
-        erros++
-    } else {
-        (respostaNão[i] === quiz[i].respostaSim)
-        acertos++
-
+    // respostaRuim[i] = valor
+    // respostaBoa[i] = valor
+   debugger
+    if(valor == "sim") {
+        respostaRuim++
+    }
+     if(valor == "não") {
+        respostaBoa++
     }
 
-    if (i < quiz.length) {
+    if (i < quiz.length -1) {
         console.log(quiz[i])
         document.querySelector('.quiz').innerHTML = `
             <img src=${quiz[i].imagem} alt=${quiz[i].alt} />
@@ -134,12 +133,14 @@ function onClick(valor){
         
         let mensagem = ''
     
-        if (respostaSim > respostaNão){
+        if (respostaRuim > respostaBoa){
          
-            mensagem = 'Mana parabéns seu relacionamento é como tem que ser baseado no respeito onde um respeita o espaço do outro'
-            
-        } else {
             mensagem = 'Mana chuta que é a laço, relacionamente existe pra te fazer feliz se o boy é desse jeito, cai fora que o mundo é grande'
+            
+        } 
+        if(respostaBoa > respostaRuim){
+
+            mensagem = 'Mana seu relacionamento é como tem que ser um respeitando o espaço do outro'
         }
         document.querySelector('.quiz').innerHTML = `
         <p>${mensagem}</p>
